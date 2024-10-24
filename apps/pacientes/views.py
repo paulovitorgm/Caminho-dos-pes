@@ -1,7 +1,13 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
-from apps.pacientes.models.models import PacientesModel
+from apps.pacientes.models.pacientes import PacientesModel
 
 
 class PacientesListView(ListView):
@@ -19,7 +25,6 @@ class PacientesCreate(CreateView):
 
 class PacientesDetail(DetailView):
     model = PacientesModel
-    queryset = PacientesModel.objects.all()
     template_name = 'pacientes/detalhes_paciente.html'
     context_object_name = 'lista'
 

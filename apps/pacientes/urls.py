@@ -1,8 +1,12 @@
 from django.urls import path
 
-from apps.pacientes.views import (PacientesListView,
-                                  PacientesCreate, PacientesDetail,
-                                  PacientesUpdate, PacientesDelete)
+from apps.pacientes.views import (
+    PacientesCreate,
+    PacientesDelete,
+    PacientesDetail,
+    PacientesListView,
+    PacientesUpdate,
+)
 
 app_name = 'pacientes'
 
@@ -12,5 +16,4 @@ urlpatterns = [
     path('detalhar/<pk>/', PacientesDetail.as_view(), name='detalhar'),
     path('editar/<pk>/', PacientesUpdate.as_view(), name='editar'),
     path('deletar/<pk>/', PacientesDelete.as_view(), name='deletar'),
-
 ]

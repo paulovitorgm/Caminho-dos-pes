@@ -18,9 +18,11 @@ django = "^5.1.2"
 psycopg = "^3.2.3"
 
 
+
 [tool.poetry.group.dev.dependencies]
 taskipy = "^1.14.0"
 ruff = "^0.7.0"
+faker = "^30.8.0"
 
 [tool.poetry.group.dev]
 optional = true

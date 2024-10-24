@@ -17,21 +17,24 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ lista.id }}</td>
-                <td>{{ lista.nome }}</td>
-                <td>{{ lista.sobrenome }}</td>
+                {% if lista %}
+                    <td>{{ lista.id }}</td>
+                    <td>{{ lista.nome }}</td>
+                    <td>{{ lista.sobrenome }}</td>
 
-                {% if lista.sexo == 'M' %}
-                    <td>Masculino</td>
+                    {% if lista.sexo == 'M' %}
+                        <td>Masculino</td>
+                    {% else %}
+                        <td>Feminino</td>
+                    {% endif %}
+
+                    <td>{{ lista.telefone }}</td>
+                    <td>{{ lista.email }}</td>
+                    <td>{{ lista.primeiro_atendimento }}</td>
                 {% else %}
-                    <td>Feminino</td>
+                    <td colspan="7">Paciente não encontrado</td>
                 {% endif %}
-
-                <td>{{ lista.telefone }}</td>
-                <td>{{ lista.email }}</td>
-                <td>{{ lista.primeiro_atendimento }}</td>
             </tr>
-
         </tbody>
     </table>
 

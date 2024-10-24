@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from apps.pacientes.models.models import PacientesModel
+from apps.pacientes.models.pacientes import PacientesModel
 
 admin.site.register(PacientesModel)

@@ -10,6 +10,7 @@
             </tr>
         </thead>
         <tbody>
+        {% if lista %}
             {% for campo in lista %}
                 <tr>
                     <td>{{ campo.id }}</td>
@@ -18,12 +19,16 @@
                     <td><a href="{% url 'pacientes:detalhar' campo.id %}">Detalhes</a></td>
                     <td><a href="{% url 'pacientes:editar' campo.id %}">Editar</a></td>
                     <td><a href="{% url 'pacientes:deletar' campo.id %}">Excluir</a></td>
-
-
                 </tr>
             {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">Ainda não há pacientes registrados</td>
+        </tr>
+        {% endif %}
         </tbody>
     </table>
+    <input type="submit" onclick="location.href='{% url 'pacientes:criar' %}'" value="Cadastrar novo">
 
 
 {% endblock %}

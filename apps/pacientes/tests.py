@@ -1,3 +1,8 @@
 from django.test import TestCase
 
-# Create your tests here.
+from apps.pacientes.models.pacientes import PacientesModel
+
+
+class TestPacientesModel(TestCase):
+    def setUp(self):
+        ...
