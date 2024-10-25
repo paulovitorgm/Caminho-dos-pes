@@ -1,42 +1,18 @@
-# SIM_NAO = [('s', 'Sim'), ('n', 'Não')]
-# paciente = models.OneToOneField(
-#         PacientesModel, on_delete=models.CASCADE, related_name='anamnese'
-#     )
-#
-#     acompanhamento_medico = models.CharField(
-#         max_length=100, blank=True, default='Não faz'
-#     )
-#
-#     medicamento_em_uso = models.CharField(
-#         max_length=200, blank=True, default='Não faz'
-#     )
-#
-#     diabetico = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     hepatite = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     hiv = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     alergico = models.CharField(max_length=50, default='Nenhuma')
-#
-#     teve_cancer = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     gravidez = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     lactante = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     hipertensao = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     hipotensao = models.CharField(max_length=1, choices=SIM_NAO, default='n')
-#
-#     observacoes = models.TextField(max_length=400, blank=True)
+from django.core.management import BaseCommand, CommandError
 
-from django.core.management import BaseCommand
-from faker import Faker
-
-fake = Faker('pt_BR')
+from apps.utils.criar_anamneses_fake import criar_anamnese
 
 
 class Command(BaseCommand):
+    help = 'Criar anamneses'
+
+    def add_arguments(self, parser):  # noqa
+        parser.add_argument('--quantidade', '-q', type=int)
+
     def handle(self, *args, **options):
-        self.stdout.write('Chamada')
+        try:
+            qnt = options.get('quantidade') or 100
+            criar_anamnese(qnt)
+            self.stdout.write(self.style.SUCCESS('Anamneses criadas com sucesso'))
+        except CommandError:
+            raise CommandError('Anamneses não cadastradas.')

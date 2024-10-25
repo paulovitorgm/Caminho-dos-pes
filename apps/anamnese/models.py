@@ -28,7 +28,7 @@ class AnamneseModel(models.Model):
 
     hiv = models.CharField(max_length=3, choices=SIM_NAO, default='Não')
 
-    alergico = models.CharField(max_length=50, default='Nenhuma')
+    alergia = models.CharField(max_length=50, default='Nenhuma')
 
     teve_cancer = models.CharField(max_length=3, choices=SIM_NAO, default='Não')
 
