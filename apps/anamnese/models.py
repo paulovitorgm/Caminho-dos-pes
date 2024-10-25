@@ -1,5 +1,4 @@
-from datetime import datetime
-
+from django.utils.timezone import now
 from django.db import models
 
 from apps.pacientes.models import PacientesModel
@@ -12,7 +11,7 @@ class AnamneseModel(models.Model):
         PacientesModel, on_delete=models.CASCADE, related_name='anamnese'
     )
 
-    data = models.DateField(default=datetime.today().date())
+    data = models.DateField(default=now)
 
     acompanhamento_medico = models.CharField(
         max_length=100, blank=True, default='Não faz'
@@ -46,5 +45,5 @@ class AnamneseModel(models.Model):
         return self.paciente.nome
 
     class Meta:
-        db_table = 'anamnese'
+        db_table = 'anamneses'
         verbose_name_plural = 'Anamneses'

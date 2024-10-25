@@ -1,0 +1,16 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+
+    <h1>Deseja excluir permanentemente a despesa "{{ lista.descricao }}" feita no dia {{ lista.data }}?</h1>
+
+    <form method="post">
+    {% csrf_token %}
+        <input type="submit" value="Sim">
+        <input type="reset" value="Não" onclick="location.href='{% url 'despesas:listar' %}'">
+    </form>
+
+
+
+
+{% endblock %}

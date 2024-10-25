@@ -1,0 +1,34 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th colspan="2">PACIENTE</th>
+                <th>DATA</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if lista %}
+            {% for campo in lista %}
+                <tr>
+                    <td>{{ campo.id }}</td>
+                    <td colspan="2">{{ campo.paciente.nome }} {{ campo.paciente.sobrenome }}</td>
+                    <td>{{ campo.data }}</td>
+                    <td><a href="{% url 'vendas:detalhar' campo.id %}">Detalhes</a></td>
+                    <td><a href="{% url 'vendas:editar' campo.id %}">Editar</a></td>
+                    <td><a href="{% url 'vendas:deletar' campo.id %}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">Ainda não há pacientes registrados</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <input type="submit" onclick="location.href='{% url 'vendas:criar' %}'" value="Cadastrar novo">
+
+
+{% endblock %}

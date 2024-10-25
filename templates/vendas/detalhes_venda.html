@@ -1,0 +1,37 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+
+
+<table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DESCRIÇÃO</th>
+                <th>DATA</th>
+                <th>FORNECEDOR</th>
+                <th>VALOR</th>
+                <th>MEIO DE PAGAMENTO</th>
+                <th>OBSERVAÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ lista.id }}</td>
+                <td>{{ lista.paciente }}</td>
+                <td>{{ lista.servico }}</td>
+                <td>{{ lista.data }}</td>
+                <td>{{ lista.total }}</td>
+                <td>{{ lista.pagamento }}</td>
+                <td>{{ lista.observacoes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
+
+
+
+

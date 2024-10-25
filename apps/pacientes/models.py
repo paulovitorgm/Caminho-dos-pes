@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models.functions import Now
-
+from django.utils.timezone import now
 SEXO_OP = [('F', 'Feminino'), ('M', 'Masculino')]
 
 
@@ -10,7 +9,7 @@ class PacientesModel(models.Model):
     sexo = models.CharField(choices=SEXO_OP, max_length=1, blank=False, null=False)
     email = models.EmailField(max_length=100, blank=True, null=True, unique=True)
     telefone = models.CharField(max_length=11, blank=True, null=True, unique=True)
-    primeiro_atendimento = models.DateField(default=Now())
+    primeiro_atendimento = models.DateField(default=now)
 
     def __str__(self):
         return (
