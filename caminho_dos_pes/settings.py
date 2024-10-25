@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.pacientes',
+    'apps.anamnese',
 ]
 
 MIDDLEWARE = [

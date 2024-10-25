@@ -1,0 +1,57 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+
+
+<table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>SOBRENOME</th>
+                <th>ACOMPANHAMENTO MÉDICO</th>
+                <th>MEDICAÇÃO EM USO</th>
+                <th>DIABÉTICO</th>
+                <th>HEPATITE</th>
+                <th>ALERGIA</th>
+                <th>JÁ TEVE CÂNCER</th>
+                <th>GESTANTE</th>
+                <th>LACTANTE</th>
+                <th>PRESSÃO ALTA</th>
+                <th>PRESSÃO BAIXA</th>
+                <th>OBSERVAÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% if lista %}
+                    <td>{{ lista.id }}</td>
+                    <td>{{ lista.paciente.nome }}</td>
+                    <td>{{ lista.paciente.sobrenome }}</td>
+                    <td>{{ lista.acompanhamento_medico }}</td>
+                    <td>{{ lista.medicamento_em_uso }}</td>
+                    <td>{{ lista.diabetico }}</td>
+                    <td>{{ lista.hepatite }}</td>
+                    <td>{{ lista.hiv }}</td>
+                    <td>{{ lista.alergico }}</td>
+                    <td>{{ lista.teve_cancer }}</td>
+                    <td>{{ lista.gravidez }}</td>
+                    <td>{{ lista.lactante }}</td>
+                    <td>{{ lista.hipertensao }}</td>
+                    <td>{{ lista.hipotensao }}</td>
+                    <td>{{ lista.observacoes }}</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+
+    <input type="reset" onclick="location.href='{% url 'anamnese:listar' %}'" value="Voltar para a lista">
+
+
+
+{% endblock %}
+
+
+
+

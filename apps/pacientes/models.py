@@ -8,8 +8,8 @@ class PacientesModel(models.Model):
     nome = models.CharField(max_length=60, blank=False, null=False)
     sobrenome = models.CharField(max_length=60, blank=False, null=False)
     sexo = models.CharField(choices=SEXO_OP, max_length=1, blank=False, null=False)
-    email = models.EmailField(max_length=100, blank=True, null=True)
-    telefone = models.CharField(max_length=11, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=True, null=True, unique=True)
+    telefone = models.CharField(max_length=11, blank=True, null=True, unique=True)
     primeiro_atendimento = models.DateField(default=Now())
 
     def __str__(self):
@@ -21,3 +21,4 @@ class PacientesModel(models.Model):
 
     class Meta:
         db_table = 'pacientes'
+        verbose_name_plural = 'Pacientes'

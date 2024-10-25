@@ -7,7 +7,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from apps.pacientes.models.pacientes import PacientesModel
+from apps.pacientes.models import PacientesModel
 
 
 class PacientesListView(ListView):
@@ -18,9 +18,9 @@ class PacientesListView(ListView):
 
 class PacientesCreate(CreateView):
     model = PacientesModel
-    template_name = 'form.html'
+    template_name = 'pacientes/form_paciente.html'
     fields = '__all__'
-    success_url = reverse_lazy('pacientes:lista')
+    success_url = reverse_lazy('pacientes:listar')
 
 
 class PacientesDetail(DetailView):
@@ -31,13 +31,13 @@ class PacientesDetail(DetailView):
 
 class PacientesUpdate(UpdateView):
     model = PacientesModel
-    template_name = 'form.html'
+    template_name = 'pacientes/form_paciente.html'
     fields = '__all__'
-    success_url = reverse_lazy('pacientes:lista')
+    success_url = reverse_lazy('pacientes:listar')
 
 
 class PacientesDelete(DeleteView):
     model = PacientesModel
     template_name = 'pacientes/deletar_paciente.html'
-    success_url = reverse_lazy('pacientes:lista')
+    success_url = reverse_lazy('pacientes:listar')
     context_object_name = 'lista'
