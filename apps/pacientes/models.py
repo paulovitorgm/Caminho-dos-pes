@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+
 SEXO_OP = [('F', 'Feminino'), ('M', 'Masculino')]
 
 

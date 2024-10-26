@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+
 from apps.pacientes.models import PacientesModel
 from apps.utils.meios_de_pagamento import meio_de_pagamento
 
