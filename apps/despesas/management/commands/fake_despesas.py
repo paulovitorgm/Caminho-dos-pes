@@ -1,10 +1,10 @@
 from django.core.management import BaseCommand, CommandError
 
-from apps.utils.criar_vendas_fake import criar_venda
+from apps.utils.criar_despesas import criar_despesa
 
 
 class Command(BaseCommand):
-    help = 'Criar vendas fake'
+    help = 'Criar despesas fake'
 
     def add_arguments(self, parser):  # noqa
         parser.add_argument('--quantidade', '-q', type=int)
@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             qnt = options.get('quantidade') or 50
-            criar_venda(qnt)
-            self.stdout.write(self.style.SUCCESS('Vendas criadas com sucesso'))
+            criar_despesa(qnt)
+            self.stdout.write(self.style.SUCCESS('Despesas criadas com sucesso'))
         except CommandError:
-            raise CommandError('As vendas não puderam ser criadas.')
+            raise CommandError('As despesas não puderam ser criadas.')
