@@ -7,7 +7,7 @@ from apps.utils.barra_de_progresso import barra_de_progresso
 
 fake = Faker('pt_BR')
 
-# lista_pacientes = get_list_or_404(PacientesModel)
+
 lista_pacientes = PacientesModel.objects.all()
 
 

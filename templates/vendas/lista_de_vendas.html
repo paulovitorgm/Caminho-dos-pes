@@ -14,7 +14,7 @@
             {% for campo in lista %}
                 <tr>
                     <td>{{ campo.id }}</td>
-                    <td colspan="2">{{ campo.paciente.nome }} {{ campo.paciente.sobrenome }}</td>
+                    <td colspan="2">{{ campo.paciente.nome_completo }}</td>
                     <td>{{ campo.data }}</td>
                     <td><a href="{% url 'vendas:detalhar' campo.id %}">Detalhes</a></td>
                     <td><a href="{% url 'vendas:editar' campo.id %}">Editar</a></td>

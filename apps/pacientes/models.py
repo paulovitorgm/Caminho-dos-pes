@@ -12,6 +12,10 @@ class PacientesModel(models.Model):
     telefone = models.CharField(max_length=11, blank=True, null=True, unique=True)
     primeiro_atendimento = models.DateField(default=now)
 
+    class Meta:
+        db_table = 'pacientes'
+        verbose_name_plural = 'Pacientes'
+
     def __str__(self):
         return (
             f'{self.nome} {self.sobrenome}'
@@ -19,6 +23,5 @@ class PacientesModel(models.Model):
             else self.nome
         )
 
-    class Meta:
-        db_table = 'pacientes'
-        verbose_name_plural = 'Pacientes'
+    def nome_completo(self):
+        return f'{self.nome} {self.sobrenome}'

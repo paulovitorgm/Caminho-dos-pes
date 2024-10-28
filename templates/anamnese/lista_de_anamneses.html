@@ -6,7 +6,6 @@
             <tr>
                 <th>ID</th>
                 <th>NOME</th>
-                <th>SOBRENOME</th>
             </tr>
         </thead>
         <tbody>
@@ -14,8 +13,7 @@
             {% for campo in lista %}
                 <tr>
                     <td>{{ campo.id }}</td>
-                    <td>{{ campo.paciente.nome }}</td>
-                    <td>{{ campo.paciente.sobrenome }}</td>
+                    <td>{{ campo.paciente.nome_completo }}</td>
                     <td><a href="{% url 'anamnese:detalhar' campo.id %}">Detalhes</a></td>
                     <td><a href="{% url 'anamnese:editar' campo.id %}">Editar</a></td>
                     <td><a href="{% url 'anamnese:deletar' campo.id %}">Excluir</a></td>
