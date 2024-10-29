@@ -8,53 +8,44 @@ from apps.utils.criar_anamneses_fake import criar_anamnese
 from apps.utils.criar_pacientes_fake import criar_pacientes
 
 
-class TestAnamnese(TestCase):
+class TestViewsAnamnese(TestCase):
     quantidade = 10
-    anamnese = AnamneseModel.objects.first()
+    chave_primaria = 1
 
     def setUp(self):
         criar_pacientes(self.quantidade)
         criar_anamnese(self.quantidade)
 
-    def test_se_todas_anamneses_foram_criadas(self):
-        assert len(AnamneseModel.objects.all()) == self.quantidade
-
-    def test_endpoint_lista_de_anamneses(self):
+    def test_endpoints_lista_de_anamneses(self):
         response = self.client.get(reverse('anamnese:listar'))
-        assert response.status_code == HTTPStatus.OK
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_endpoint_detalhes_anamnese(self):
         response = self.client.get(
-            reverse('anamnese:detalhar', kwargs={'pk': self.anamnese.pk})
+            reverse('anamnese:detalhar', kwargs={'pk': self.chave_primaria})
         )
-        assert response.status_code == HTTPStatus.OK
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_endpoint_delete_anamnese(self):
         response = self.client.get(
-            reverse('anamnese:deletar', kwargs={'pk': self.anamnese.pk})
+            reverse('anamnese:deletar', kwargs={'pk': self.chave_primaria})
         )
         assert response.status_code == HTTPStatus.OK
 
     def test_delete_anamnese(self):
         response = self.client.post(
-            reverse('anamnese:deletar', kwargs={'pk': self.anamnese.pk})
+            reverse('anamnese:deletar', kwargs={'pk': self.chave_primaria})
         )
         assert response.status_code == HTTPStatus.FOUND
-        assert not AnamneseModel.objects.filter(pk=self.anamnese.pk).exists()
+        assert not AnamneseModel.objects.filter(pk=self.chave_primaria).exists()
         self.assertRedirects(response, reverse('anamnese:listar'))
 
     def test_endpoint_update_anamnese(self):
         response = self.client.get(
-            reverse('anamnese:editar', kwargs={'pk': self.anamnese.pk})
+            reverse('anamnese:editar', kwargs={'pk': self.chave_primaria})
         )
         assert response.status_code == HTTPStatus.OK
 
-    # def test_update_anamnese(self): #noqa
-    #     nova_anamnese = preencher_anamnese()
-    #
-    #     response = self.client.post(
-    #         reverse('anamnese:editar', kwargs={'pk': self.anamnese.pk}),
-    #         data=nova_anamnese,
-    #     )
-    #
-    #     assert response.status_code == HTTPStatus.OK
+    def test_endpoit_create(self):
+        response = self.client.get(reverse('anamnese:criar'))
+        self.assertEqual(response.status_code, HTTPStatus.OK)

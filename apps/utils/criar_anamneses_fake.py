@@ -1,5 +1,6 @@
+import random
+
 from faker import Faker
-from faker.providers import DynamicProvider
 
 from apps.anamnese.models import AnamneseModel
 from apps.pacientes.models import PacientesModel
@@ -12,25 +13,22 @@ lista_pacientes = PacientesModel.objects.all()
 
 
 def preencher_anamnese():
-    sim_nao = DynamicProvider('opcao', ['Sim', 'Não'])
-    pacientes = DynamicProvider('paciente', lista_pacientes)
-    fake.add_provider(sim_nao)
-    fake.add_provider(pacientes)
+    sim_nao = random.choice(['Sim', 'Não'])
 
     return {
-        'paciente': fake.paciente(),
+        'paciente': random.choice(lista_pacientes),
         'data': fake.date(),
         'acompanhamento_medico': fake.text(15),
         'medicamento_em_uso': fake.text(15),
-        'diabetico': fake.opcao(),
-        'hepatite': fake.opcao(),
-        'hiv': fake.opcao(),
+        'diabetico': sim_nao,
+        'hepatite': sim_nao,
+        'hiv': sim_nao,
         'alergia': fake.text(15),
-        'teve_cancer': fake.opcao(),
-        'gravidez': fake.opcao(),
-        'lactante': fake.opcao(),
-        'hipertensao': fake.opcao(),
-        'hipotensao': fake.opcao(),
+        'teve_cancer': sim_nao,
+        'gravidez': sim_nao,
+        'lactante': sim_nao,
+        'hipertensao': sim_nao,
+        'hipotensao': sim_nao,
         'observacoes': fake.text(60),
     }
 

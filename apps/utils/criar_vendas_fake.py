@@ -1,7 +1,6 @@
 import random
 
 from faker import Faker
-from faker.providers import DynamicProvider
 
 from apps.pacientes.models import PacientesModel
 from apps.utils.barra_de_progresso import barra_de_progresso
@@ -14,12 +13,9 @@ lista_pacientes = PacientesModel.objects.all()
 
 
 def preencher_dados():
-    paciente = DynamicProvider('paciente', lista_pacientes)
-    fake.add_provider(paciente)
-
     return {
         'data': fake.date(),
-        'paciente': fake.paciente(),
+        'paciente': random.choice(lista_pacientes),
         'servico': random.choice(servicos)[0],
         'pagamento': random.choice(meio_de_pagamento)[0],
         'total': fake.pyfloat(3, 2, True),
@@ -27,7 +23,7 @@ def preencher_dados():
     }
 
 
-def criar_venda(quantidade):
+def criar_vendas(quantidade):
     lista = []
     for _ in barra_de_progresso(range(quantidade), 'Venda'):
         dados = preencher_dados()

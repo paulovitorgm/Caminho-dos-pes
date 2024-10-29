@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand, CommandError
 
-from apps.utils.criar_vendas_fake import criar_venda
+from apps.utils.criar_vendas_fake import criar_vendas
 
 
 class Command(BaseCommand):
@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             qnt = options.get('quantidade') or 50
-            criar_venda(qnt)
+            criar_vendas(qnt)
             self.stdout.write(self.style.SUCCESS('Vendas criadas com sucesso'))
         except CommandError:
             raise CommandError('As vendas não puderam ser criadas.')

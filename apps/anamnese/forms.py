@@ -6,4 +6,4 @@ from apps.anamnese.models import AnamneseModel
 class AnamneseForm(ModelForm):
     class Meta:
         model = AnamneseModel
-        exclude = ['data']
+        fields = '__all__'
