@@ -6,9 +6,11 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from rest_framework.viewsets import ModelViewSet
 
 from apps.anamnese.forms import AnamneseForm
 from apps.anamnese.models import AnamneseModel
+from apps.anamnese.serializers import AnamneseSerializer
 
 
 class AnamneseListView(ListView):
@@ -42,3 +44,8 @@ class AnamneseDelete(DeleteView):
     context_object_name = 'lista'
     template_name = 'anamnese/deletar_anamnese.html'
     success_url = reverse_lazy('anamnese:listar')
+
+
+class AnamnesesViewset(ModelViewSet):
+    queryset = AnamneseModel.objects.all()
+    serializer_class = AnamneseSerializer

@@ -6,8 +6,10 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from rest_framework.viewsets import ModelViewSet
 
 from apps.pacientes.models import PacientesModel
+from apps.pacientes.serializers import PacientesSerializer
 
 
 class PacientesListView(ListView):
@@ -41,3 +43,8 @@ class PacientesDelete(DeleteView):
     template_name = 'pacientes/deletar_paciente.html'
     success_url = reverse_lazy('pacientes:listar')
     context_object_name = 'lista'
+
+
+class PacientesViewset(ModelViewSet):
+    queryset = PacientesModel.objects.all()
+    serializer_class = PacientesSerializer
