@@ -6,10 +6,8 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
-from rest_framework.viewsets import ModelViewSet
 
 from apps.despesas.models import DespesasModel
-from apps.despesas.serializers import DespesasSerializer
 
 
 class DespesasCreate(CreateView):
@@ -43,8 +41,3 @@ class DespesasDelete(DeleteView):
     context_object_name = 'lista'
     template_name = 'despesas/deletar_despesa.html'
     success_url = reverse_lazy('despesas:listar')
-
-
-class DespesasViewset(ModelViewSet):
-    queryset = DespesasModel.objects.all()
-    serializer_class = DespesasSerializer

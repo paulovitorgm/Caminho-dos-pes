@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.pacientes.views import (
+from apps.pacientes.views.views import (
     PacientesCreate,
     PacientesDelete,
     PacientesDetail,

@@ -1,4 +1,3 @@
-
 from django.test import TestCase
 
 from apps.anamnese.models import AnamneseModel
@@ -13,20 +12,20 @@ class TestAnamneseModel(TestCase):
         criar_pacientes(self.quantidade)
         paciente = PacientesModel.objects.get(pk=1)
         self.anamnese = {
-            "paciente": paciente,
-            "data": "2002-02-07",
-            "acompanhamento_medico": "Possimus ab.",
-            "medicamento_em_uso": "Corrupti alias.",
-            "diabetico": "Sim",
-            "hepatite": "Sim",
-            "hiv": "Sim",
-            "alergia": "Illum.",
-            "teve_cancer": "Sim",
-            "gravidez": "Sim",
-            "lactante": "Sim",
-            "hipertensao": "Sim",
-            "hipotensao": "Sim",
-            "observacoes": "Quasi et ipsa. Id vel fuga tempora animi."
+            'paciente': paciente,
+            'data': '2002-02-07',
+            'acompanhamento_medico': 'Possimus ab.',
+            'medicamento_em_uso': 'Corrupti alias.',
+            'diabetico': 'Sim',
+            'hepatite': 'Sim',
+            'hiv': 'Sim',
+            'alergia': 'Illum.',
+            'teve_cancer': 'Sim',
+            'gravidez': 'Sim',
+            'lactante': 'Sim',
+            'hipertensao': 'Sim',
+            'hipotensao': 'Sim',
+            'observacoes': 'Quasi et ipsa. Id vel fuga tempora animi.',
         }
 
     def test_criar(self):
@@ -38,8 +37,8 @@ class TestAnamneseModel(TestCase):
 
     def test_listar(self):
         criar_anamnese(self.quantidade)
-        query = AnamneseModel.objects.all()
-        self.assertEqual(len(query), self.quantidade)
+        query = AnamneseModel.objects.count()
+        self.assertEqual(query, self.quantidade)
 
     def test_update(self):
         criar_anamnese(self.quantidade)
@@ -53,10 +52,9 @@ class TestAnamneseModel(TestCase):
     def test_delete_um(self):
         criar_anamnese(self.quantidade)
         AnamneseModel.objects.get(pk=1).delete()
-        self.assertEqual(len(AnamneseModel.objects.all()),
-                         self.quantidade - 1)
+        self.assertEqual(AnamneseModel.objects.count(), self.quantidade - 1)
 
     def test_delete_todos(self):
         criar_anamnese(self.quantidade)
         AnamneseModel.objects.all().delete()
-        self.assertEqual(len(AnamneseModel.objects.all()), 0)
+        self.assertEqual(AnamneseModel.objects.count(), 0)

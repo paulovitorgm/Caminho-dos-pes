@@ -27,8 +27,8 @@ class TestPacientesModel(TestCase):
 
     def test_listar(self):
         criar_pacientes(self.quantidade)
-        query = PacientesModel.objects.all()
-        self.assertEqual(len(query), self.quantidade)
+        query = PacientesModel.objects.count()
+        self.assertEqual(query, self.quantidade)
 
     def test_update(self):
         criar_pacientes(self.quantidade)
@@ -42,10 +42,9 @@ class TestPacientesModel(TestCase):
     def test_delete_um(self):
         criar_pacientes(self.quantidade)
         PacientesModel.objects.get(pk=1).delete()
-        self.assertEqual(len(PacientesModel.objects.all()),
-                         self.quantidade - 1)
+        self.assertEqual(PacientesModel.objects.count(), self.quantidade - 1)
 
     def test_delete_todos(self):
         criar_pacientes(self.quantidade)
         PacientesModel.objects.all().delete()
-        self.assertEqual(len(PacientesModel.objects.all()), 0)
+        self.assertEqual(PacientesModel.objects.count(), 0)

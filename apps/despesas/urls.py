@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.despesas.views import (
+from apps.despesas.views.views import (
     DespesasCreate,
     DespesasDelete,
     DespesasDetail,

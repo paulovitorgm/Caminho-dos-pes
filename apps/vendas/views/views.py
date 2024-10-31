@@ -6,10 +6,8 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
-from rest_framework.viewsets import ModelViewSet
 
 from apps.vendas.models import VendasModel
-from apps.vendas.serializers import VendasSerializer
 
 
 class VendasCreate(CreateView):
@@ -43,8 +41,3 @@ class VendasDelete(DeleteView):
     context_object_name = 'lista'
     template_name = 'vendas/deletar_venda.html'
     success_url = reverse_lazy('vendas:listar')
-
-
-class VendasViewset(ModelViewSet):
-    queryset = VendasModel.objects.all()
-    serializer_class = VendasSerializer

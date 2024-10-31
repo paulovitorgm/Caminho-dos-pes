@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.anamnese.views import (
+from apps.anamnese.views.views import (
     AnamneseCreate,
     AnamneseDelete,
     AnamneseDetail,

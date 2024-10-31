@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.vendas.views import (
+from apps.vendas.views.views import (
     VendasCreate,
     VendasDelete,
     VendasDetail,

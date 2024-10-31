@@ -20,6 +20,7 @@ djangorestframework = "^3.15.2"
 django-filter = "^24.3"
 markdown = "^3.7"
 django-extensions = "^3.2.3"
+coverage = "^7.6.4"
 
 
 
@@ -34,7 +35,8 @@ optional = true
 
 [tool.ruff]
 line-length = 85
-extend-exclude = ['migrations', 'manage.py', 'settings.py']
+exclude = ['settings.py']
+extend-exclude = ['migrations', 'manage.py']
 
 
 
@@ -46,6 +48,7 @@ quote-style = 'single'
 [tool.ruff.lint]
 preview = true
 select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = ['PT009']
 
 
 [tool.taskipy.tasks]
@@ -54,5 +57,6 @@ format = 'ruff check . --fix && ruff format .'
 run = 'python manage.py runserver'
 m = 'python manage.py'
 pre_test = 'task lint'
-test = 'python manage.py test'
+test = 'coverage run --source="." manage.py test'
+post_test = 'coverage html'
 

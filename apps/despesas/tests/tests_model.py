@@ -27,8 +27,8 @@ class TestDespesasModel(TestCase):
 
     def test_listar(self):
         criar_despesa(self.quantidade)
-        query = DespesasModel.objects.all()
-        self.assertEqual(len(query), self.quantidade)
+        query = DespesasModel.objects.count()
+        self.assertEqual(query, self.quantidade)
 
     def test_update(self):
         criar_despesa(self.quantidade)
@@ -42,10 +42,9 @@ class TestDespesasModel(TestCase):
     def test_delete_um(self):
         criar_despesa(self.quantidade)
         DespesasModel.objects.get(pk=1).delete()
-        self.assertEqual(len(DespesasModel.objects.all()),
-                         self.quantidade - 1)
+        self.assertEqual(DespesasModel.objects.count(), self.quantidade - 1)
 
     def test_delete_todos(self):
         criar_despesa(self.quantidade)
         DespesasModel.objects.all().delete()
-        self.assertEqual(len(DespesasModel.objects.all()), 0)
+        self.assertEqual(DespesasModel.objects.count(), 0)
