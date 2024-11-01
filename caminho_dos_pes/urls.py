@@ -10,7 +10,7 @@ from apps.vendas.views.api import VendasViewset
 router = routers.DefaultRouter()
 
 router.register('pacientes', PacientesViewset, basename='pacientes')
-router.register('anamnese', AnamnesesViewset)
+router.register('anamnese', AnamnesesViewset, basename='anamneses')
 router.register('vendas', VendasViewset)
 router.register('despesas', DespesasViewset)
 

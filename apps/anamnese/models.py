@@ -14,11 +14,11 @@ class AnamneseModel(models.Model):
     data = models.DateField(default=now)
 
     acompanhamento_medico = models.CharField(
-        max_length=100, blank=True, default='Não faz'
+        max_length=60, blank=True, default='Não faz'
     )
 
     medicamento_em_uso = models.CharField(
-        max_length=200, blank=True, default='Não faz'
+        max_length=60, blank=True, default='Não faz'
     )
 
     diabetico = models.CharField(max_length=3, choices=SIM_NAO, default='Não')
