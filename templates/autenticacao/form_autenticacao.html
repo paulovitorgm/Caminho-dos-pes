@@ -6,7 +6,7 @@
         {{ form.as_p }}
         {% csrf_token %}
         <input type="submit">
-        <input type="reset" onclick="location.href='{% url 'pacientes:listar' %}'" value="Cancelar">
+        <input type="reset" onclick="location.href='{% url 'autenticacao:listar' %}'" value="Cancelar">
 
     </form>
 

@@ -1,0 +1,30 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+<table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if lista %}
+            {% for campo in lista %}
+                <tr>
+                    <td>{{ campo.id }}</td>
+                    <td>{{ campo.username }}</td>
+                    <td><a href="{% url 'autenticacao:detalhar' campo.id %}">Detalhes</a></td>
+                    <td><a href="{% url 'autenticacao:editar' campo.id %}">Editar</a></td>
+                    <td><a href="{% url 'autenticacao:deletar' campo.id %}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">Ainda não há pacientes registrados</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <input type="submit" onclick="location.href='{% url 'autenticacao:criar' %}'" value="Cadastrar novo">
+{% endblock %}

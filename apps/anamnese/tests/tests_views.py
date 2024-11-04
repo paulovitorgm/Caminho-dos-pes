@@ -46,6 +46,6 @@ class TestViewsAnamnese(TestCase):
         )
         assert response.status_code == HTTPStatus.OK
 
-    def test_endpoit_create(self):
+    def test_endpoint_create(self):
         response = self.client.get(reverse('anamnese:criar'))
         self.assertEqual(response.status_code, HTTPStatus.OK)

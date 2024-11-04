@@ -1,0 +1,45 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+
+
+<table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>USUÁRIO</th>
+                <th>EMAIL</th>
+                <th>ÚLTIMO LOGIN</th>
+                <th>DATA DE CADASTRO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% if lista %}
+                    <td>{{ lista.id }}</td>
+                    <td>{{ lista.nome_completo }}</td>
+                    <td>{{ lista.username }}</td>
+                    <td>{{ lista.email }}</td>
+                    {% if lista.last_login %}
+                        <td>{{ lista.last_login }}</td>
+                    {% else %}
+                        <td>Ainda não fez login</td>
+                    {% endif %}
+                    <td>{{ lista.date_joined }}</td>
+                {% else %}
+                    <td colspan="7">Usuário não encontrado</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}
+
+
+
+

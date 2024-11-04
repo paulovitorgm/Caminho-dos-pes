@@ -22,5 +22,7 @@ urlpatterns = [
     path('anamnese/', include('apps.anamnese.urls')),
     path('vendas/', include('apps.vendas.urls')),
     path('despesas/', include('apps.despesas.urls')),
+    path('autenticacao/', include('apps.autenticacao.urls')),
     path('api/', include((router.urls, 'api'))),
+    path('', include('apps.base.urls')),
 ]

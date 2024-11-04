@@ -1,5 +1,7 @@
 from pathlib import Path, os
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'apps.autenticacao',
     'apps.pacientes',
     'apps.anamnese',
     'apps.vendas',
@@ -126,3 +129,21 @@ REST_FRAMEWORK = {
 
     }
 
+# Troca do algoritimo de hash padrão para Argon2
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    "django.contrib.auth.hashers.ScryptPasswordHasher",
+]
+
+
+LOGIN_REDIRECT_URL = 'autenticacao:detalhar'
+LOGIN_URL = 'autenticacao:login'
+LOGOUT_REDIRECT_URL = 'autenticacao:login'
+
+# duração da sessão 6h
+SESSION_COOKIE_AGE = 21600
+# expira a sessão quando fecha o navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
