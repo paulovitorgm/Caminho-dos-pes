@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from apps.autenticacao.views import (
+from apps.autenticacao.views.views import (
     UserCreate,
     UserDelete,
     UserDetail,
