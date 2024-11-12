@@ -18,6 +18,16 @@ class UserSerializer(ModelSerializer):
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password']
 
+    def validate_username(self, value):  # noqa: PLR6301
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError('Este nome de usuário já está em uso.')
+        return value
+
+    def validate_email(self, value):  # noqa: PLR6301
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError('Este email já está em uso.')
+        return value
+
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
         return super().create(validated_data)
