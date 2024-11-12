@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from rest_framework.test import APITestCase
 
@@ -17,6 +18,12 @@ class TestAPI(APITestCase):
             'primeiro_atendimento': '2024-10-31',
         }
         self.paciente = PacientesModel.objects.create(**self.dados)
+        User.objects.create_superuser(**{
+            'username': 'admin',
+            'password': 'admin',
+            'email': 'admin@admin.com',
+        })
+        self.client.login(**{'username': 'admin', 'password': 'admin'})
 
     def test_get(self):
         response = self.client.get(reverse('api:pacientes-list'))

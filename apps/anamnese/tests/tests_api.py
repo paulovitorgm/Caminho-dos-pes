@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from rest_framework.test import APITestCase
 
@@ -29,6 +30,12 @@ class TestAPI(APITestCase):
         }
         self.anamnese = AnamneseModel.objects.create(**self.dados)
         self.dados['paciente'] = self.paciente.id
+        User.objects.create_superuser(**{
+            'username': 'admin',
+            'password': 'admin',
+            'email': 'admin@admin.com',
+        })
+        self.client.login(**{'username': 'admin', 'password': 'admin'})
 
     def test_get(self):
         response = self.client.get(reverse('api:anamneses-list'))
@@ -305,7 +312,10 @@ class TestAPI(APITestCase):
 
     def test_delete(self):
         response = self.client.delete(
-            reverse('api:anamneses-detail', kwargs={'pk': self.anamnese.id})
+            reverse(
+                'api:anamneses-detail',
+                kwargs={'pk': self.anamnese.id},
+            )
         )
         self.assertEqual(response.status_code, HTTPStatus.NO_CONTENT)
         self.assertEqual(response.data, None)
